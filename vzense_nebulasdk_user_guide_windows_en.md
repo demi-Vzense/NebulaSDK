@@ -12,6 +12,47 @@ description: 英文说明文档
 
 添加代码段：
 
+{% tabs %}
+{% tab title="C++" %}
+```cpp
+// C++ API code
+/**
+* @brief         Set the color Gain with the exposure mode of RGB sensor in VzExposureControlMode_Manual.
+* @param[in]     device       The handle of the device.
+* @param[in]     params       The value of color Gain.Value range: [1.0 15.5]
+* @return        ::VzRetOK    if the function succeeded, or one of the error values defined by ::VzReturnStatus.
+*/
+VZENSE_C_API_EXPORT VzReturnStatus VZ_SetColorGain(VzDeviceHandle device, float params);
+```
+
+
+{% endtab %}
+
+{% tab title="C#" %}
+```csharp
+ //C#
+ public static void HotPlugStateCallback(ref VzDeviceInfo pInfo, int status, IntPtr contex)
+        {
+            Console.WriteLine("uri " + status + "  " + pInfo.uri + "    " + (status == 0 ? "add" : "remove"));
+            Console.WriteLine("alia " + status + "  " + pInfo.alias + "    " + (status == 0 ? "add" : "remove"));
+
+            if (status == 0)
+            {
+                Console.WriteLine("VN_OpenDevice " + VNAPI.VN_OpenDeviceByUri(pInfo.uri, ref deviceHandle));
+                Console.WriteLine("VN_StartStream " + VNAPI.VN_StartStream(deviceHandle));
+            }
+            else
+            {
+                Console.WriteLine("VN_StopStream " + VNAPI.VN_StopStream(deviceHandle));
+                Console.WriteLine("VN_CloseDevice " + VNAPI.VN_CloseDevice(ref deviceHandle));
+            }
+        }
+```
+
+
+{% endtab %}
+{% endtabs %}
+
 {% code title="" lineNumbers="true" %}
 ```cpp
 //C++ API code
